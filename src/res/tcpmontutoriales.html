@@ -1,0 +1,102 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="">
+  <meta charset="utf-8">
+  <title>Tutorial TCPMon</title>
+</head>
+
+<body lang="es">
+<h1>Tutorial TCPMon</h1>
+
+<h2>Contenido</h2>
+<ul>
+  <li><a href="#intro">Introducci&oacute;n</a></li>
+  <li><a href="#dependencies">Estructura y Dependencias</a></li>
+  <li><a href="#patterns">Patrones de Uso</a></li>
+    <ul>
+      <li><a href="#intermediate">Como Intermediario expl&iacute;cito</a></li>
+      <li><a href="#sender">Como Remitente de solicitudes para Servicios Web</a></li>
+      <li><a href="#proxy">Como Proxy</a></li>
+    </ul>
+  <li><a href="#advanced">Configuraci&oacute;n Avanzada</a></li>
+    <ul>
+      <li><a href="#slow">Simulaci&oacute;n de Conexi&oacute;n Lenta</a></li>
+      <li><a href="#http_proxy">Soporte de proxy HTTP</a></li>
+    </ul>
+  <li><a href="#conclusion">Conclusi&oacute;n</a></li>
+</ul>
+<a name="intro"></a>
+<h2>Introducci&oacute;n</h2>
+
+<p>Tcpmon es una utilidad que permite al usuario controlar los mensajes transmitidos a lo largo de la conversaci&oacute;n basada en TCP. Se basa en una interfaz de usuario SWING y funciona en casi todas las plataformas compatibles con Java. El objetivo de este sencillo tutorial es explicar c&oacute;mo funciona tcpmon y tambi&eacute;n para explicar algunas de sus caracter&iacute;sticas.</p>
+<a name="dependencies"></a>
+<h2>Estructura y Dependencias</h2>
+
+<p>Tcpmon tiene no tiene ninguna dependencia de las bibliotecas de terceros. Pero algunas caracter&iacute;sticas de la interfaz de usuario  dependen de JDK 1.4 as&iacute; tcpmon necesita un JRE que es 1.4 o superior.</p>
+<a name="patterns"></a>
+<h2>Patrones de Uso</h2>
+<a name="intermediate"></a>
+<h3>Como Intermediario expl&iacute;cito</h3>
+
+<p>El patr&oacute;n de uso m&aacute;s com&uacute;n para la tcpmon es como
+<strong>intermediario</strong>. Se llama <strong>expl&iacute;cito</strong> ya que el cliente tiene que apuntar al intermediario en lugar del punto final para monitorizar los mensajes. La siguiente figura explica este concepto.</p>
+
+<p><img alt="concept" src="images/concept.jpg"/></p>
+
+<p>Con el fin de iniciar el tcpmon en esta configuraci&oacute;n se tiene que proporcionar el nombre de host y el puerto para el oyente en la pantalla de administraci&oacute;n. Ver imagen de abajo.</p>
+
+<p><img alt="first screen" src="images/screen1.jpg"/></p>
+
+<p>Al pulsar el bot&oacute;n "a&ntilde;adir" se abre una nueva pesta&ntilde;a que permite que los mensajes sean vistos como en la siguiente pantalla</p>
+
+<p><img alt="message screen" src="images/screen2.jpg"/></p>
+
+<p>En este punto, el solicitante debe apuntar al puerto de escucha del tcpmon en lugar del punto final origial. Vamos a entender esto con un ejemplo:</p>
+
+<p>Diga todos los mensajes pasados entre www.apache.org necesitan ser monitoreados.</p>
+
+<p><strong>Paso 1</strong> - A&ntilde;adir un oyente con el anfitri&oacute;n como www.apache.org y puerto como 80. Establecer el oyente al puerto 8080 que puede ser cualquier puerto no utilizado en la m&aacute;quina local</p>
+
+<p><img alt="the settings" src="images/screen2-closeup2.jpg"></p>
+
+<p><strong>Paso 2</strong> - Apunte el navegador a localhost:8080 en lugar de www.apache.org.</p>
+
+<p><img alt="browser address bar" src="images/screen2-browser.jpg"/></p>
+
+<p>Una vez que los mensajes comienzan a fluir que se pueden ver en la ficha correspondiente como se ve a continuaci&oacute;n.</p>
+
+<p><img alt="Filles screen" src="images/screen3.jpg"></p>
+
+<p>Los controles inferiores permiten que los mensajes sean en formato XML (&uacute;til en la depuraci&oacute;n de los servicios Web), guardar y reenviar los mensajes, y tambi&eacute;n para cambiar la disposici&oacute;n de las ventanas de mensajes.</p>
+
+<p><img alt="button set" src="images/screen2-closeup1.jpg"/></p>
+<a name="sender"></a>
+<h3>Como Remitente de solicitudes para Servicios Web</h3>
+
+<p>Tcpmon tambi&eacute;n se puede utilizar como un remitente de solicitudes de servicios Web. El mensaje de solicitud SOAP se puede pegar en la pantalla de env&iacute;o y luego env&iacute;a directamente al servidor.</p>
+
+<p><img alt="request sender" src="images/screen4.jpg"/></p>
+<a name="proxy"></a>
+<h3>Como Proxy</h3>
+
+<p>Tcpmon puede actuar como un proxy. Para iniciar el tcpmon en modo proxy, s&oacute;lo tienes que seleccionar la opci&oacute;n proxy desde los botones radio. Al actuar como un proxy, tcpmon s&oacute;lo necesita el puerto de escucha para ser configurado.</p>
+
+<p><img alt="proxy" src="images/screen5.jpg"/></p>
+<a name="advanced"></a>
+<h2>Configuraci&oacute;n avanzada</h2>
+<a name="slow"></a>
+<h3>Simulaci&oacute;n de Conexi&oacute;n Lenta</h3>
+
+<p>Tcpmon puede simular una conexi&oacute;n lenta, en cuyo caso la demora y los bytes que se retiren se puede configurar. Esto es especialmente &uacute;til en la prueba de los servicios Web.</p>
+
+<p><img alt="slow-connection" src="images/screen6.jpg"/></p>
+<a name="http_proxy"></a>
+<h3>El soporte de proxy HTTP</h3>
+
+<p>Si se requiere soporte de proxy HTTP, tambi&eacute;n se puede ajustar en la pantalla de administraci&oacute;n.</p>
+<a name="conclusion"></a>
+<h2>Conclusi&oacute;n</h2>
+
+<p>Tcpmon es una herramienta sencilla y f&aacute;cil de usar que tiene muchos beneficios en el desarrollo de aplicaciones de mensajes impulsados. Es particularmente &uacute;til en el desarrollo de servicios Web</p>
+</body>
+</html>
